@@ -37,7 +37,7 @@
         </div>
 
         <div class="mb-3">
-        <label for="type" class="form-label">Type</label>
+        <label for="type" class="form-label">Linguaggio di program.</label>
         <select class="form-select" name="type_id" id="type" aria-label="Default select">
           <option value="">Scegli il tipo di linguaggio</option>
           @foreach ($types as $type)
@@ -46,6 +46,15 @@
             </option>
           @endforeach
         </select>
+      </div>
+
+      <div class="mb-3">
+        <p for="type" class="form-label">Tecnologie usate</p>
+        @foreach ($technologies as $technology)
+          <input type="checkbox" id="{{ $technology->slug }}" name="technologies[]" value="{{ $technology->id }}"
+            @if (in_array($technology->id, old('technologies', []))) checked @endif>
+          <label class="me-2" for="{{ $technology->slug }}">{{ $technology->name }}</label>
+        @endforeach
       </div>
 
         <button type="submit" class="btn btn-primary">Salva</button>
