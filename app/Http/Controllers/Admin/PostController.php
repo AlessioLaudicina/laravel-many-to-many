@@ -54,6 +54,7 @@ class PostController extends Controller
         
 
         $newPost = Post::create($validated_data);
+        $newPost->technologies()->attach( $request->technologies);
 
         return redirect()->route('admin.posts.show', ['post' => $newPost->slug])->with('status', 'Post creato con successo!');
 
