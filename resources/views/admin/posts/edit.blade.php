@@ -52,6 +52,15 @@
         </select>
       </div>
 
+      <div class="mb-3">
+        <p for="type" class="form-label">Technologies</p>
+        @foreach ($technologies as $technology)
+          <input type="checkbox" id="{{ $technology->slug }}" name="technologies[]" value="{{ $technology->id }}"
+            @if (!$errors->all() && $post->technologies->contains($technology)) checked @elseif ($errors->all() && in_array($technology->id, old('technologies', []))) checked @endif>
+          <label class="me-2" for="{{ $technology->slug }}">{{ $technology->name }}</label>
+        @endforeach
+      </div>
+
         <button type="submit" class="btn btn-primary">Salva</button>
 
     </form>
