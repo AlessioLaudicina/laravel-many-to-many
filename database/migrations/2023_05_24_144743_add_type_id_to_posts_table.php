@@ -13,13 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
+        
+         Schema::table('posts', function (Blueprint $table) {
             $table->unsignedBigInteger('type_id')->after('id');
             $table->foreign('type_id')
                     ->references('id')
                     ->on('types')
                     ->cascadeOnDelete();
         });
+        
+        
+        
+    
+       
     }
 
     /**
