@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TechnologyController extends Controller
 {
@@ -14,7 +15,7 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        //
+       //
     }
 
     /**

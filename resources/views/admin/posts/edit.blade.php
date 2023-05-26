@@ -41,7 +41,7 @@
         </div>
 
         <div class="mb-3">
-        <label for="type" class="form-label">Type</label>
+        <label for="type" class="form-label">Linguaggio di program.</label>
         <select class="form-select" name="type_id" id="type" aria-label="Default select">
           <option value="">Choose a type</option>
           @foreach ($types as $type)
@@ -53,7 +53,7 @@
       </div>
 
       <div class="mb-3">
-        <p for="type" class="form-label">Technologies</p>
+        <p for="type" class="form-label">Tecnologie usate</p>
         @foreach ($technologies as $technology)
           <input type="checkbox" id="{{ $technology->slug }}" name="technologies[]" value="{{ $technology->id }}"
             @if (!$errors->all() && $post->technologies->contains($technology)) checked @elseif ($errors->all() && in_array($technology->id, old('technologies', []))) checked @endif>
