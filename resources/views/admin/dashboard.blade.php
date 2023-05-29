@@ -1,26 +1,9 @@
 @extends('layouts.admin')
 
+
 @section('content')
-
-    <h2 class="fs-4 text-secondary my-4">
-        {{ __('Dashboard') }}
-    </h2>
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">{{ __('User Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+    <div class="container">
+        <h1 class="my-3">Home della Dashboard</h1>
+        <a class="btn btn-success mt-2" href="{{ route('admin.posts.create') }}">New project</a>
     </div>
-
 @endsection
