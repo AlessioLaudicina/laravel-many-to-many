@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Type;
 use App\Models\Technology;
 use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest; 
+use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -31,7 +32,7 @@ class PostController extends Controller
     {
         $types = Type::all();
         $technologies = Technology::all();
-        return view('admin.posts.create', compact( 'types')) ;
+        return view('admin.posts.create', compact('types', 'technologies'));
     }
 
     /**
@@ -51,13 +52,12 @@ class PostController extends Controller
         if ($checkPost) {
             return back()->withInput()->withErrors(['slug' => 'Impossibile creare lo slug per questo post, cambia il titolo']);
         }
-        
+
 
         $newPost = Post::create($validated_data);
-        $newPost->technologies()->attach( $request->technologies);
+        $newPost->technologies()->attach($request->technologies);
 
         return redirect()->route('admin.posts.show', ['post' => $newPost->slug])->with('status', 'Post creato con successo!');
-
     }
 
     /**
@@ -93,7 +93,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        
+
         $validated_data = $request->all();
         $validated_data['slug'] = Post::generateSlug($request->title);
 
@@ -104,8 +104,7 @@ class PostController extends Controller
         }
 
         $post->update($validated_data);
-        return redirect()->route('admin.posts.show', ['post' => $post->slug])->with('status', 'Post modificato con successo!');
-
+        return redirect()->route('admin.posts.show', ['post' => $post->slug]);
     }
 
     /**
