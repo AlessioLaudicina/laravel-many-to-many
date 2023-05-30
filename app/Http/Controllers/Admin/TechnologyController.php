@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
-use App\Models\Technology;
 use Illuminate\Http\Request;
+use App\Models\Technology; 
 use Illuminate\Support\Str;
 
 class TechnologyController extends Controller
@@ -15,7 +16,8 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-       //
+        $technologies = Technology::all();
+        return view('admin.technologies.index', compact('technologies'));
     }
 
     /**
@@ -42,10 +44,10 @@ class TechnologyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Technology  $technology
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Technology $technology)
+    public function show($id)
     {
         //
     }
@@ -53,10 +55,10 @@ class TechnologyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Technology  $technology
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Technology $technology)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +67,10 @@ class TechnologyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Technology  $technology
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Technology $technology)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +78,10 @@ class TechnologyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Technology  $technology
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Technology $technology)
+    public function destroy($id)
     {
         //
     }

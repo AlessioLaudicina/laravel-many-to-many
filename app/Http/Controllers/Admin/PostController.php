@@ -9,6 +9,7 @@ use App\Models\Technology;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -57,6 +58,8 @@ class PostController extends Controller
         $newPost = Post::create($validated_data);
         $newPost->technologies()->attach($request->technologies);
 
+
+
         return redirect()->route('admin.posts.show', ['post' => $newPost->slug])->with('status', 'Post creato con successo!');
     }
 
@@ -102,6 +105,7 @@ class PostController extends Controller
         if ($checkPost) {
             return back()->withInput()->withErrors(['slug' => 'Impossibile creare lo slug']);
         }
+        $post->technologies()->sync($request->technologies);
 
         $post->update($validated_data);
         return redirect()->route('admin.posts.show', ['post' => $post->slug]);

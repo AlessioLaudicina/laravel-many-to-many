@@ -1,29 +1,45 @@
 @extends('layouts.admin')
 
-@section('page-title', $post->title)
 
 @section('content')
-
-    <h1>{{ $post->title }}</h1>
-    <h6><small>Slug: {{ $post->slug }}</small></h6>
-
-    <h3>Tipo: {{ $post->type ? $post->type->name : 'Nessuna categoria abbinata' }}</h3>
-
-    @forelse ($post->technologies as $technology)
-        <span>{{ $technology->name }}</span>
-
-    @empty
-    @endforelse
+    <div class="container mt-4">
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
 
 
+        <h1 class="my-4">{{ $post->title }}</h1>
+        <div>Descrizione: <strong>{{ $post->content }}</strong></div>
+
+        @if ($post->type)
+            <div>Linguaggi: <strong>{{ $post->type->name }}</strong></div>
+        @endif
 
 
-    @if ($post->cover_image)
-        <img class="img-thumbnail" src="{{ $post->cover_image }}" alt="{{ $post->title }}" />
-    @endif
+        <div>
+            Tecnologie usate:
+            @foreach ($post->technologies as $technology)
+                <span><strong>{{ $technology->name }} </strong></span>
+            @endforeach
+        </div>
 
-    <p>{{ $post->content }}</p>
+        <div class="text-center my-4">
+            <img class="" width="300" src="{{ asset('storage/' . $post['image']) }}"
+                alt="{{ $post['image_original_name'] }}">
+        </div>
 
-    <a class="btn btn-primary" href="{{ route('admin.posts.index') }}">Torna alla lista</a>
 
+
+
+        <div class="text-center my-4">
+            <img class="" width="300" src="{{ asset('storage/' . $post['image']) }}"
+                alt="{{ $post['image_original_name'] }}">
+        </div>
+
+        <a href="{{ route('admin.posts.index', $post) }}" class="btn btn-primary">
+            Torna ai tuoi progetti
+        </a>
+    </div>
 @endsection

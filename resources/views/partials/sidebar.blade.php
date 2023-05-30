@@ -18,5 +18,11 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a href="{{route('admin.technologies.index')}}" class="nav-link">
+                Tecnologie
+            </a>
+        </li>
+
     </ul>
 </div>

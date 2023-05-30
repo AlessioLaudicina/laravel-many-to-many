@@ -32,6 +32,12 @@ Route::middleware(['auth', 'verified'])
         Route::resource('posts', PostController::class)->parameters([
             'posts' => 'post:slug'
         ]);
+        Route::resource('types', TypeController::class)->parameters([
+            'types' => 'type:slug'
+        ])->only(['index']);
+        Route::resource('technologies', TechnologyController::class)->parameters([
+            'technologies' => 'technology:slug'
+        ])->only(['index']);;
     });
 
 Route::middleware('auth')->group(function () {
